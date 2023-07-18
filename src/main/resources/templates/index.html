@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{ layout/layout1 :: layout( ~{this::head} , ~{this::main} ) }">
+<head>
+	<link rel="stylesheet" href="/css/index.css"> 
+	<link rel="stylesheet" href="/css/visual/banner.css">
+	<link rel="stylesheet" href="/css/visual/suggest.css">
+	<link rel="stylesheet" href="/css/visual/event-md.css">
+	<script src="js/visual/banner.js"></script>
+</head>
+<main>
+	<h1>메인영역</h1>
+	<div class="wrap">
+	
+		<!-- 배너영역 -->
+		<section id="visual">
+			<h1>메인베너영역</h1>
+			<div class="wrap">
+				<ol class="item-list flex">
+					<th:block th:each="i : ${#numbers.sequence(1,7)}">
+					<li class="item" >
+						<a href="#" th:style="|background-image: url('/images/visual/v${i}.jpg');|"><!-- [[${i}]] --></a>
+					</li>
+					</th:block>
+				</ol>
+				<div class="btn-wrap">
+					<button class="btn prev" onclick="move(-1)">&lt;</button>
+					<button class="btn next" onclick="move(1)">&gt;</button>
+				</div>
+				
+				<ul class="bullet-wrap flex">
+					<li class="bullet" th:each="i : ${#numbers.sequence(1,7)}" ></li> <!-- /*th:text="${i}"*/ 불릿안에 숫자보여짐 -->
+				</ul>
+				<div class="auto-wrap">
+					<button>
+						<span class="material-symbols-outlined" style="display: none;">play_circle</span>
+						<span class="material-symbols-outlined">stop_circle</span>
+					</button>
+					<span class="txt">
+						<span class="target">1</span>
+						/
+						<span class="tot">7</span>
+					</span>
+				</div>
+			</div>
+		</section>
+		
+		<!-- 기획전 영역 -->
+		<section id="suggest">
+			<h1>메인기획전영역</h1>
+			<div class="wrap flex">
+				<div class="wrap_1">
+					<span class="img">
+						<a href="/prepare">
+							<img src="/images/main/m1.jpg">
+						</a>
+					</span>
+					<div class="tit-wrap">
+						<div class="tit">
+							<strong>BETTER DENIM</strong>
+							<span>지속 가능한 데님으로 환경을 생각하는 작은 움직임</span>
+						</div>
+						<div class="thumbnail-list">
+							<ul class="flex">
+								<li class="card card-goods" >
+									<a href="/prepare" class="card-goods-img" style="background-image: url('/images/main/m_i_1.jpg');"></a>
+									<div>
+										<a href="/prepare">
+											<p class="card-goods__brand">
+												ZIOZIA
+												<span class="card-goods__label">23SS</span>
+											</p>
+											<p class="card-godds__text">
+												여성 스트레이트 데님 팬츠
+											</p>
+											<div class="card-goods__priceInfo">
+												<strong class="card-goods__price_sale">59,000</strong>
+												<s class="card-goods__price">139,000</s>
+												<strong class="card-goods-discount">57%</strong>
+											</div>
+										</a>
+										<div class="card-colors">
+											<a></a>
+										</div>
+									</div>
+								</li>
+								<li class="card card-goods">
+									<a href="/prepare" class="card-goods-img" style="background-image: url('/images/main/m_i_2.jpg');"></a>
+									<div>
+										<a href="/prepare">
+											<p class="card-goods__brand">
+												PROJECT M
+												<span class="card-goods__label">23SS</span>
+											</p>
+											<p class="card-godds__text">
+												스탠다드 슬림핏 데님 팬츠
+											</p>
+											<div class="card-goods__priceInfo">
+												<strong class="card-goods__price_sale">47,900</strong>
+												<s class="card-goods__price">129,000</s>
+												<strong class="card-goods-discount">62%</strong>
+											</div>
+										</a>
+										<div class="card-colors">
+											<a></a>
+										</div>
+									</div>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				
+				<div class="wrap_1">
+					<span class="img">
+						<a href="/prepare">
+							<img src="/images/main/m2.jpg">
+						</a>
+					</span>
+					
+					<div class="tit-wrap">
+						<div class="tit">
+							<strong>SUMMER OUTLET</strong>
+							<span>갓성비 아이템으로 시원하게 여름준비</span>
+						</div>
+						<div class="thumbnail-list">
+							<ul class="flex">
+								<li class="card card-goods">
+									<a href="/prepare" class="card-goods-img" style="background-image: url('/images/main/m_i_3.jpg');"></a>
+									<div>
+										<a href="/prepare">
+											<p class="card-goods__brand">
+												POLHAM
+												<span class="card-goods__label">22SS</span>
+											</p>
+											<p class="card-godds__text">
+												공용) 피케 폴로 솔리드 반팔티
+											</p>
+											<div class="card-goods__priceInfo">
+												<strong class="card-goods__price_sale">10,900</strong>
+												<s class="card-goods__price">39,900</s>
+												<strong class="card-goods-discount">72%</strong>
+											</div>
+										</a>
+										<div class="card-colors">
+											<a></a>
+										</div>
+									</div>
+								</li>
+								<li class="card card-goods">
+									<a href="/prepare" class="card-goods-img" style="background-image: url('/images/main/m_i_4.jpg');"></a>
+									<div>
+										<a href="/prepare">
+											<p class="card-goods__brand">
+												TOPTEN10
+												<span class="card-goods__label">22SS</span>
+											</p>
+											<p class="card-godds__text">
+												여성) 디즈니 콜라보 반팔 티
+											</p>
+											<div class="card-goods__priceInfo">
+												<strong class="card-goods__price_sale">9,900</strong>
+												<s class="card-goods__price">25,900</s>
+												<strong class="card-goods-discount">61%</strong>
+											</div>
+										</a>
+										<div class="card-colors">
+											<a></a>
+										</div>
+									</div>
+								</li>
+							</ul>
+						</div>
+					</div>
+					
+				</div>
+			</div>
+		</section>
+		
+		<!-- 이벤트 배너 영역 -->
+		<section id="event_banner">
+			<h1>이벤트 배너 영역</h1>
+			<div class="event-wrap">
+				<a href="/prepare">
+					<img src="/images/main/e_b.jpg">
+				</a>
+			</div>
+		</section>
+		
+		<!-- MD'S PICK 영역 -->
+		<section id="md_feature">
+			<h1>엠디픽영역</h1>
+			<div class="wrap">
+				<div class="title_h2">
+					<span>MD'S PICK</span>
+				</div>
+				
+				<div class="md-thumbnail-list">
+					<ul class="flex center">
+						<li class="card card-goods" >
+							<a href="/prepare" class="card-goods-img" style="background-image: url('/images/main/md_1.jpg');"></a>
+							<div>
+								<a href="/prepare">
+									<p class="card-goods__brand">POLHAM</p>
+									<p class="card-godds__text">
+										여성) 유틸리티 나일론 밴딩 쇼츠
+									</p>
+									<div class="card-goods__priceInfo">
+										<strong class="card-goods__price_sale">19,900</strong>
+										<s class="card-goods__price">39,900</s>
+										<strong class="card-goods-discount">50%</strong>
+									</div>
+								</a>
+								<div class="card-colors">
+									<a></a>
+								</div>
+							</div>
+						</li>
+						<li class="card card-goods">
+							<a href="/prepare" class="card-goods-img" style="background-image: url('/images/main/md_2.jpg');"></a>
+							<div>
+								<a href="/prepare">
+									<p class="card-goods__brand">POLHAM</p>
+									<p class="card-godds__text">
+										여성) 이지 밴딩 쇼츠
+									</p>
+									<div class="card-goods__priceInfo">
+										<strong class="card-goods__price_sale">13,900</strong>
+										<s class="card-goods__price">39,900</s>
+										<strong class="card-goods-discount">65%</strong>
+									</div>
+								</a>
+								<div class="card-colors">
+									<a></a>
+								</div>
+							</div>
+						</li>
+						<li class="card card-goods">
+							<a href="/prepare" class="card-goods-img" style="background-image: url('/images/main/md_3.jpg');"></a>
+							<div>
+								<a href="/prepare">
+									<p class="card-goods__brand">TMAKER</p>
+									<p class="card-godds__text">
+										나일론 유틸리티 쇼츠
+									</p>
+									<div class="card-goods__priceInfo">
+										<strong class="card-goods__price_sale">32,950</strong>
+										<s class="card-goods__price">59,900</s>
+										<strong class="card-goods-discount">44%</strong>
+									</div>
+								</a>
+								<div class="card-colors">
+									<a></a>
+								</div>
+							</div>
+						</li>
+						<li class="card card-goods">
+							<a href="/prepare" class="card-goods-img" style="background-image: url('/images/main/md_4.jpg');"></a>
+							<div>
+								<a href="/prepare">
+									<p class="card-goods__brand">TMAKER</p>
+									<p class="card-godds__text">
+										여성) 오버핏 크롭 윈드브래이커
+									</p>
+									<div class="card-goods__priceInfo">
+										<strong class="card-goods__price_sale">54,450</strong>
+										<s class="card-goods__price">99,000</s>
+										<strong class="card-goods-discount">45%</strong>
+									</div>
+								</a>
+								<div class="card-colors">
+									<a></a>
+								</div>
+							</div>
+						</li>
+					</ul>
+					<ul class="flex center">
+						<li class="card card-goods" >
+							<a href="/prepare" class="card-goods-img" style="background-image: url('/images/main/md_5.jpg');"></a>
+							<div>
+								<a href="/prepare">
+									<p class="card-goods__brand">TMAKER</p>
+									<p class="card-godds__text">
+										여성) 베이직 로고 반팔티
+									</p>
+									<div class="card-goods__priceInfo">
+										<strong class="card-goods__price_sale">22,460</strong>
+										<s class="card-goods__price">49,900</s>
+										<strong class="card-goods-discount">54%</strong>
+									</div>
+								</a>
+								<div class="card-colors">
+									<a></a>
+								</div>
+							</div>
+						</li>
+						<li class="card card-goods">
+							<a href="/prepare" class="card-goods-img" style="background-image: url('/images/main/md_6.jpg');"></a>
+							<div>
+								<a href="/prepare">
+									<p class="card-goods__brand">EDITION</p>
+									<p class="card-godds__text">
+										그라핀 콜라보 그래픽 반팔 티셔츠
+									</p>
+									<div class="card-goods__priceInfo">
+										<strong class="card-goods__price_sale">14,900</strong>
+										<s class="card-goods__price">49,000</s>
+										<strong class="card-goods-discount">69%</strong>
+									</div>
+								</a>
+								<div class="card-colors">
+									<a></a>
+								</div>
+							</div>
+						</li>
+						<li class="card card-goods">
+							<a href="/prepare" class="card-goods-img" style="background-image: url('/images/main/md_7.jpg');"></a>
+							<div>
+								<a href="/prepare">
+									<p class="card-goods__brand">TMAKER</p>
+									<p class="card-godds__text">
+										스몰로고 소로나 반팔티
+									</p>
+									<div class="card-goods__priceInfo">
+										<strong class="card-goods__price_sale">26,460</strong>
+										<s class="card-goods__price">49,900</s>
+										<strong class="card-goods-discount">54%</strong>
+									</div>
+								</a>
+								<div class="card-colors">
+									<a></a>
+								</div>
+							</div>
+						</li>
+						<li class="card card-goods">
+							<a href="/prepare" class="card-goods-img" style="background-image: url('/images/main/md_8.jpg');"></a>
+							<div>
+								<a href="/prepare">
+									<p class="card-goods__brand">TMAKER</p>
+									<p class="card-godds__text">
+										스탠다드 슬림핏 데님 팬츠
+									</p>
+									<div class="card-goods__priceInfo">
+										<strong class="card-goods__price_sale">47,900</strong>
+										<s class="card-goods__price">129,000</s>
+										<strong class="card-goods-discount">62%</strong>
+									</div>
+								</a>
+								<div class="card-colors">
+									<a></a>
+								</div>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+			
+		</section>
+	</div>
+</main>
+</html>

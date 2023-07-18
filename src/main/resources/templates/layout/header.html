@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html xmlns:th="//www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<header>
+	<h1>헤더영역</h1>
+	<div class="wrap view-size">
+		<section id="rogo-brands">
+			<h1>헤더상단-브랜드</h1>
+			<div class="wrap flex between">
+				<div class="logo">
+					<h1>메인로고</h1>
+					<a href="/"></a>
+				</div>
+				<div class="brand-menu">
+					<h1>브랜드메뉴</h1>
+					<ul class="flex">
+						<li>
+							<a href="/prepare">ZIOZIA</a>
+						</li>
+						<li>
+							<a href="/prepare">AND Z</a>
+						</li>
+						<li>
+							<a href="/prepare">EDITION</a>
+						</li>
+						<li>
+							<a href="/prepare">TOPTEN10</a>
+						</li>
+						<li>
+							<a href="/prepare">POLHAM</a>
+						</li>			
+						<li>
+							<a href="/prepare">PROJECT M</a>
+						</li>
+						<li>
+							<a href="/prepare">TOPTEN KIDS</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</section>
+		
+		<section id="search">
+			<h1>헤더중간-검색영역</h1>
+			<div class="wrap flex end">
+				<div>
+					<form id="form-search" class="flex between">
+						<select name="columnName">
+							<option value="title" >제목</option>
+							<option value="content" >내용</option>
+						</select>
+						<input type="search" name="query">
+						<button type="button" id="btn-search"></button>
+						<script type="text/javascript">
+							$(function(){
+								$("#btn-search").click(function(){
+									btnSearchClicked();
+								});
+							});
+							
+							function btnSearchClicked(){
+								//var data=$("#form-search").serialize();//+"&page="+page;
+								$.ajax({
+									url:"/rest-item/search",
+									type: "PATCH",
+									success:function(result){
+										//$("#item-list").html(result);
+										//location.href="category/rest-item";
+									}
+								});
+							}
+							
+						</script>
+						
+					</form>
+				</div>
+			</div>
+		</section>
+		
+		<section id="category-user">
+			<h1>헤더하단-카테고리&유저메뉴</h1>
+			<div class="wrap flex between">
+				<div class="cate">
+					<h1>카테고리메뉴</h1>
+					<ul class="flex">
+						<li>
+							<a href="/prepare">랭킹</a>
+						</li>
+						<li>
+							<a href="/category/female">여성</a>
+						</li>
+						<li>
+							<a href="/category/male">남성</a>
+						</li>
+						<li>
+							<a href="/category/child">유아동</a>
+						</li>
+						<li>
+							<a href="/category/goods">잡화</a>
+						</li>
+						<li>
+							<a href="/prepare">기획전</a>
+						</li>
+						<li>
+							<a href="/prepare">이벤트</a>
+						</li>
+						<li>
+							<a href="/prepare">베스트리뷰</a>
+						</li>
+					</ul>
+				</div>
+				
+				<div class="user-menu flex">
+					<h1>유저메뉴</h1>
+					<!-- 로그인 전 -->
+					<div class="before-login">
+						<th:block sec:authorize="isAnonymous()">
+							<span class="flex">
+								<p>
+									<a href="/login">LOGIN</a>
+								</p>
+								<p>
+									<a href="/signup-v">SIGNUP</a>
+								</p>
+							</span>
+						</th:block>
+					</div>
+					
+					<div class="after-login">
+						<!-- 로그인 후 -->
+						<th:block sec:authorize="isAuthenticated()">
+							<span>
+								<span sec:authentication="name">로그인ID(이메일)</span>
+	    						(<span sec:authentication="principal.nick">추가로 구성한 nick확인가능</span>) 님!
+							</span>
+							
+							<!-- 로그아웃 -->
+							<form action="/logout" method="POST" style="display: inline-block;">
+				   				<input type="hidden" th:if="${_csrf}"
+				       			th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+				   				<button class="logout" style="padding-right: 0">LOGOUT</button>
+				   			</form>
+				   			
+				   			<a sec:authorize="hasRole('ADMIN')" href="/admin" style="padding-right: 0">관리자페이지</a>
+							<a href="/carts/list" style="padding-right: 0">CART</a>
+						</th:block>
+					</div>
+				</div>
+			</div>
+		</section>
+		
+	</div>
+</header>
+</html>

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{ layout/layout1 :: layout( ~{this::head} , ~{this::main} ) }">
+<head>
+	<link rel="stylesheet" href="/css/user/cart.css">
+	<!-- https://developers.portone.io/docs/ko/etc/all/0 -->
+	<!-- ajax -->
+	<meta name="_csrf" th:content="${_csrf.token}"/>
+	<!-- default header name is X-CSRF-TOKEN -->
+	<meta name="_csrf_header" th:content="${_csrf.headerName}"/>
+	<script type="text/javascript">
+		$(function(){
+			//cartList();
+		});
+		
+		//삭제확인
+		function delete_event(){
+			if(confirm("정말 삭제하시겠습니까??") == true){    //확인
+			     document.form.submit();
+			 }else{   //취소
+			     return;
+			 }
+		}
+		
+		//구매하기 포트원
+		function pay(btnTag){
+			var amount = $(btnTag).siblings(".amount").val();
+			var name = $(btnTag).siblings(".name").val();
+			
+			var IMP = window.IMP; 
+			IMP.init("imp34445572"); // 예: imp00000000
+			
+			IMP.request_pay({
+		      pg: "kcp",
+		      pay_method: "card",
+		      merchant_uid: "ORD"+new Date().getTime(),   // 주문번호
+		      name: name, // 무엇??
+		      amount: amount, //총결제금액?    // 숫자 타입
+		      buyer_email: "gildong@gmail.com",
+		      buyer_name: "홍길동",
+		      buyer_tel: "010-4242-4242",
+		      buyer_addr: "서울특별시 강남구 신사동",
+		      buyer_postcode: "01181"
+		    }, function (rsp) { // callback
+		      var msg = "";
+		      if(rsp.success){
+		    	  msg = "결제완료";
+		      }else{
+		    	  msg = "결제실패";
+		      }
+		    alert(msg);
+		    });
+		}
+	</script>
+</head>
+<main>
+	<div class="view-size">
+		<h1>장바구니 페이지</h1>
+		<section id="cart">
+			<div class="wrap">
+				<div>
+					<p class="title">장바구니</p>
+					<p class="content">장바구니는 최대 30개까지 상품을 담을 수 있으며 30일간 보관 후 자동으로 삭제됩니다.</p>
+				</div>
+				<div class="cart-wrap">
+					<div class="delete">
+						<ul class="flex end">
+							<li>
+								<a href="#">선택삭제</a>
+							</li>
+							<li>
+								<a href="#">품절삭제</a>
+							</li>
+						</ul>
+					</div>
+					<div class="basket">
+						<ul class="title flex center">
+							<li style="width: 30px;"></li>
+							<li style="width: 300px;">상품정보</li>
+							<li style="width: 250px;">옵션/수량</li>
+							<li style="width: 250px;">할인금액</li>
+							<li style="width: 200px;">할인적용금액</li>
+							<li style="width: 200px;">배송비</li>
+							<li style="width: 70px;">삭제</li>
+						</ul>
+						<!-- 자바스크립트 반복문 상품 추가시 마다 태그 추가 -->
+						<div th:each="dto : ${cartList}">
+							<ul id="cart-list" class="content flex center" >
+								<li style="width: 30px;"><input type="checkbox"></li>
+								<li class="flex" style="width: 300px;"><!-- 상품정보 -->
+									<img alt="상품이미지" th:src="${dto.url}" style="width: 40px; margin-right: 40px;">
+									<div>
+										<p style="margin-right: 20px; text-align: left;"><a href="|/category/detail/${dto.itemNo}|" th:text="${dto.title}">상품명</a><p>
+										<p style="font-weight: bold; text-align: left;"><a href="|/category/detail/${dto.itemNo}|" th:text="${dto.price}">가격</a>원<p>
+									</div>
+								</li>
+								<li style="width: 250px;"><!-- 옵션/수량 -->
+									<p><span  th:text="${dto.amount}">0</span>개</p>
+								</li>
+								<li style="width: 250px;"><!-- 할인금액 -->
+									<p><span>0</span>원</p>
+								</li>
+								<li style="width: 200px;"><!-- 할인적용금액 -->
+									<p><span>0</span>원</p>
+								</li>
+								<li style="width: 200px;" value="3000"><!-- 배송비 -->
+									<p><span>0</span>원</p>
+								</li>
+								<li style="width: 70px;">
+				        			<form th:action="|/carts/delete/${dto.itemNo}|" method="post" style="margin-top: 11px;"> <!-- th:action -->
+										<input type="hidden" name="_method" value="DELETE"> 
+										<button type="submit" class="delete-btn" onclick="delete_event()"
+											style="border: 0;border-bottom: 1px solid #a8a8a8;background-color: #fff;">삭제</button>
+									</form>
+								</li>
+							</ul>
+						 </div>
+						<div class="price-wrap flex between center" >
+							<ul class="price flex">
+								<li style="width: 150px;">
+									<p>총주문금액  <span  th:text="${#aggregates.sum(cartList.![price])}">0</span>원</p>
+								</li>
+								<li style="width: 70px;">-</li>
+								<li style="width: 150px;">
+									<p>총할인금액  <span>0</span>원</p>
+								</li>
+								<li  style="width: 70px;">+</li>
+								<li style="width: 150px;">
+									<p>총배송비  <span>3000</span>원</p>
+								</li>
+								<li  style="width: 70px;">=</li>
+								<li style="width: 180px;">
+									<p>결제예정금액  <span th:text="${#aggregates.sum(cartList.![price])+3000}">0</span>원</p>
+								</li>
+							</ul>
+							<ul class="total">
+								<li>
+									<input class="name" type="hidden" th:value="${#aggregates.sum(cartList.![price])+3000}">
+									<input class="amount" type="hidden" th:value="${#aggregates.sum(cartList.![price])+3000}">
+									<button class="pay-btn" onclick="pay(this)">
+										<p>총 <span th:text="${#aggregates.sum(cartList.![amount])}">0</span>개  <span th:text="${#aggregates.sum(cartList.![price])+3000}">0</span>원 주문하기</p>
+									</button>
+								</li>
+							</ul>
+						</div>
+					</div>					
+				</div>
+			</div>
+		</section>
+	</div>
+</main>
+</html>

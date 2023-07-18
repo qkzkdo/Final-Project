@@ -1,0 +1,45 @@
+@charset "UTF-8";
+/* 필터영역 */
+#item {
+margin: 0 25px;
+}
+#item .item-wrap .itemlist-wrap .tyt{
+	border-bottom: 1px solid #222;
+}
+#item .item-wrap .itemlist-wrap .tyt td{
+	padding-bottom: 15px;
+}
+#item .item-wrap .itemlist-wrap .content td{
+	border-bottom: 1px solid #d6d6d6;
+	pause: 5px 0;
+}
+
+
+#item .item-wrap .tit{
+	font-size: 20px; font-weight: bold;
+	padding: 0;
+	margin-bottom: 30px;
+}
+#item .item-wrap .itemlist-wrap tr:first-child td{
+	font-weight: bold;
+}
+
+/* 상품이 존재하지 않습니다. */
+#myboard>.wrap .none-list{
+	padding: 1em;
+	border-bottom: 1px solid #a9a9a9;
+}
+#item .item-wrap .tit{
+	font-size: 20px; font-weight: bold;
+}
+
+/* 페이징 */
+#item .page-wrap {
+	margin: 20px 0;
+}
+.delete-btn{
+	border: 0;
+	border-bottom: 1px solid #a8a8a8;
+	background-color: #fff;
+	
+}

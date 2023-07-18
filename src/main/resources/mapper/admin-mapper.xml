@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pha.topten.config.mapper.AdminMapper">  
+
+	<!-- 관리자페이지 상품목록 전체 조회 + 썸네일 + 페이징 -->
+	<select id="findCateItemImgPage" resultType="com.pha.topten.domain.dto.ItemListDTO2">
+		SELECT i.*, ii.url
+  		FROM item i
+  		JOIN item_category ic ON i.no = ic.item_no
+  		JOIN category c ON ic.category_no = c.no
+  		left JOIN item_image ii ON ii.item_no = i.no AND ii.is_def = 1
+		order by i.no desc
+		limit #{limit} offset #{offset} 
+	</select>
+
+	<!-- 관리자페이지 상품목록 1개 삭제 -->
+	<delete id="itemDeleteId">
+		DELETE ii, ic, i
+		FROM item_image AS ii
+		LEFT JOIN item_category AS ic ON ii.item_no = ic.item_no
+		LEFT JOIN item AS i ON ii.item_no = i.no
+		WHERE ii.item_no = #{no};
+	</delete>
+	
+	<!-- 관리자페이지 상품상세보기 조회 -->
+	<select id="itemDetail" resultType="com.pha.topten.domain.dto.ItemDetailDTO">
+		select i.*, ii.url
+		from item i
+		join item_category ic on i.no = ic.item_no
+		join category c on ic.category_no = c.no
+		left join item_image ii on ii.item_no = i.no AND ii.is_def = 1
+		where i.no = #{no}
+	</select>
+	
+	<!-- 관리자페이지 상품상세보기 이미지 리스트 조회 -->
+	<select id="itemImageList" resultType="com.pha.topten.domain.dto.ItemDetailImageListDTO">
+		select i.*, ii.url 
+		from item i
+		join item_category ic on i.no = ic.item_no
+		join category c on ic.category_no = c.no
+		left JOIN item_image ii ON ii.item_no = i.no AND ii.is_list = 1
+		where i.no = #{no}
+	</select>
+	
+	<!-- 상품 디테일에서 수정 => item 테이블만 -->
+	<update id="itemUpdate">
+		update item
+		set title=#{itemDto.title}, content=#{itemDto.content}, price=#{itemDto.price}, stock=#{itemDto.stock}
+		where no = #{no}
+	</update>
+	<!-- 상품 디테일에서 수정 => item_image 데이터 삭제 -->
+	<delete id="itemImageDelete">
+		delete from item_image
+		where item_no = #{no}
+	</delete>
+
+	
+</mapper>

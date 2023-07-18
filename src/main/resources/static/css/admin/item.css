@@ -1,0 +1,39 @@
+@charset "UTF-8";
+.img-wrap>label{
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
+	width: 100px;
+	height: 100px;
+	background-color: rgba(0,255,255, 0.2);
+	border:1px dotted #e9e9e9 ;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+}
+
+.img-wrap>label>input[type=file]{
+	display: none;
+}
+#item-write{
+	margin: 0 25px;
+}
+#item-write .write-tit{
+	font-size: 20px; font-weight: bold;
+	padding: 0;
+}
+#item-write .write-tit{
+	width: 1000px;
+	padding-bottom: 20px;
+	border-bottom: 1px double #222;
+}
+input{
+	width: 250px;
+}
+textarea{
+	width: 300px;
+	height: 120px;
+}
+.write-title{
+	font-size: 12px;
+}

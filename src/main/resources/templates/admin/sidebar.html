@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{ layout/layout1 :: layout( ~{this::head} , ~{this::main} ) }">
+<head>
+	<link rel="stylesheet" href="/css/admin/sidebar.css">
+</head>
+<main>
+	<div class="view-size">
+		<h1>관리자페이지-사이드바</h1>
+		<th:block th:fragment="sidebar">
+			<section id="sidebar">
+				<h1>사이드바영역</h1>
+				<div class="wrap" 
+					style="border-right: 1px solid #e9e9e9; width: 150px; height: 700px; margin-right: 20px;
+							margin-bottom: 20px; padding-right: 20px;">
+					<p class="tit" style="font-size: 20px; font-weight: bold; padding: 0 10px 10px;
+						 border-bottom: 3px solid #222; text-align: center;">
+						관리자메뉴
+					</p>
+					<div class="wrap-tit" style="padding: 0 10px;">
+						<p class="item-tit" style="font-weight: bold; font-size: 17px; text-align: center;
+								border-bottom: 1px solid #a9a9a9; padding-bottom: 13px;">
+							상품관리
+						</p>
+						<ul style="margin-bottom: 50px;">
+							<li style="margin-bottom: 15px; text-align: center;">
+								<a href="/admin/item/list">상품목록</a>
+							</li>
+							<li style="text-align: center;">
+								<a href="/admin/item/new">상품등록</a>
+							</li>
+						</ul>
+						<p class="user-tit" style="font-weight: bold; font-size: 17px; text-align: center;
+								border-bottom: 1px solid #a9a9a9; padding-bottom: 13px;	">
+							회원관리
+						</p>
+						<ul>
+							<li style="margin-bottom: 15px; text-align: center;">
+								<a href="#">회원목록</a>
+							</li>
+							<li style="text-align: center;">
+								<a href="#">상품등록</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</section>
+		</th:block>
+	</div>
+</main>
+</html>

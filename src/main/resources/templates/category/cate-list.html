@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="//www.thymeleaf.org" >
+<head>
+	<style type="text/css">
+		.cate-name{
+			margin-right: 20px;
+			font-size: 13px;
+			font-weight: bold;
+			border-bottom: 1px solid #222;
+		}
+	</style>
+</head>
+	<span th:each="dto : ${catelist}">
+		<a th:href="|/category/second/${dto.no}|" th:text="${dto.kName}" class="cate-name">카테고리이름</a>
+	</span>
+</html>

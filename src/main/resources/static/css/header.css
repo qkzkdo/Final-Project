@@ -1,0 +1,106 @@
+@charset "UTF-8";
+header{
+	border-bottom: 1px solid #e5e5e5;
+}
+header >.wrap{
+	padding: 19px 30px 18px 30px;
+}
+/* 상단 */
+#rogo-brands >.wrap > .logo > a{
+	display: block;
+	width: 262px;
+	height: 35px;
+	background-image: url("../images/logo.png");
+	background-repeat: no-repeat;
+}
+
+#rogo-brands >.wrap > .brand-menu > ul > li > a{
+	line-height: 35px;
+	font-size: 13px;
+	color: #c7c7c7;
+	padding: 17px;
+}
+
+
+
+
+
+/* 중간 */
+#search >.wrap {
+	height: 82px;
+	margin-bottom: 2px;
+}
+#search > .wrap > div{
+	margin-top: 20px;
+	margin-bottom: 20px; 
+}
+#search > .wrap > div> form{
+	width: 380px;
+	padding: 12px 46px 12px 7px;
+	border-bottom: 1px solid #111;
+	background: #fff;
+}
+
+#search > .wrap > div> form > *{
+	border: none;
+}
+#search > .wrap > div> form > button{
+	width: 38px;
+	height: 38px;
+	background-image: url("/images/icon/search.png");
+	background-size: 20px;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-color: #fff;
+}
+#search input{
+	width: 220px;
+	
+}
+
+
+
+
+/* 하단 */
+#category-user > .wrap > .cate > ul > li:nth-child(1) > a{
+	padding-left: 0;
+}
+#category-user > .wrap > .cate > ul > li > a{
+	color: #111;
+	display: block;
+	font-weight: 400;
+	line-height: 30px;
+	font-size: 14px;
+	padding: 0 55px 0 25px;
+}
+
+/* 유저 버튼 */
+#category-user > .wrap> .user-menu >.after-login >a,
+#category-user > .wrap> .user-menu >.after-login > form > .logout,
+#category-user > .wrap > .user-menu >.after-login > span > p > a,
+#category-user > .wrap > .user-menu >.cart >span >p >a{
+	line-height: 35px;
+	padding: 0 8px 0 9px;
+	color: #989898;
+	font-size: 12px;
+	font-weight: 400px;
+}
+
+#category-user > .wrap> .user-menu >div > form > .logout{
+	border: none;
+	background-color: #fff;
+}
+
+/* 유저이름 */
+#category-user > .wrap > .user-menu >div >span,
+#category-user > .wrap > .user-menu >div >span >span{
+	font-size: 12px;
+	color: #313131;
+}
+/* 로그인/회원가입 여백 */
+#category-user > .wrap > .user-menu > .before-login > span > p{
+	display: block;
+	margin-left: 15px;
+}
+
+

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:fragment="layout(addHead,main)">
+    <head>
+        <meta charset="UTF-8">
+        <title>qkrgkdo</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+        <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script> 
+        <link rel="stylesheet" href="/css/common.css">
+        <link rel="stylesheet" href="/css/header.css">
+        <link rel="stylesheet" href="/css/footer.css">
+        <link rel="icon" href="/images/icon/파비콘.png"> <!-- 파이콘 -->
+        <th:block th:replace="${addHead}" />
+    </head>
+    <body>
+      <th:block th:replace="~{layout/header}" />
+      <th:block th:replace="${main}" />
+      <th:block th:replace="~{layout/footer}" />
+    </body>
+</html>

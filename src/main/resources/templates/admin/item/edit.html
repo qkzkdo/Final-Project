@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{ layout/layout1 :: layout( ~{this::head} , ~{this::main} ) }">
+<head>
+	<meta name="_csrf" th:content="${_csrf.token}"/>
+		<!-- default header name is X-CSRF-TOKEN -->
+		<meta name="_csrf_header" th:content="${_csrf.headerName}"/>
+	<link rel="stylesheet" href="/css/admin/item.css">
+	<script src="/webjars/jquery/jquery.min.js"></script>
+    <script src="/js/admin/item.js"></script>
+    <script src="/js/common/category.js"></script>
+</head>
+<main>
+	<div class="view-size flex">
+		<h1>관리자페이지-상품수정</h1>
+		<div th:replace="~{ admin/sidebar :: sidebar}"></div>
+		<section id="item-write">
+			<h1>상품등록</h1>
+			<p class="tit">상품 *수정*</p>
+			<div>
+				<p style="margin: 0">상품 번호: <span th:text="${detailedit.no}"></span></p>
+				<div class="flex" style="margin: 20px 0;">
+				<img alt="리트스이미지" th:src="${detailedit.url}" width="40px">
+				<p>상품명: <span th:text="${detailedit.title}">상품명</span></p>
+				</div>
+				
+       			<form th:action="|/admin/edit/${detailedit.no}|" method="post" >
+		        	<p>
+		        		<input type="text" name="title" placeholder="상품명">
+		        	</p>
+		        	<p>
+		        		<input type="text" name="price" placeholder="가격">
+		        	</p>
+		        	<p>
+		        		<input type="text" name="stock" placeholder="재고수량">
+		        	</p>
+		        	<p id="img-area">
+		        		<!-- 이미지 태그가 js로 삽입 -->        		
+		        	</p>
+		        	<p>
+		        		<textarea name="content"></textarea>
+		        	</p>
+		        	<p>
+		        	<input type="hidden" th:if="${_csrf}"
+							th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+		        		<input type="hidden" name="_method" value="PUT">
+						<button type="submit">수정완료</button>
+		        	</p>
+		        </form>		
+			</div>
+		</section>
+	</div>
+</main>
+</html>

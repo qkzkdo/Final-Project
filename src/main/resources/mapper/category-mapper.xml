@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pha.topten.config.mapper.CategoryMapper">  <!-- 링크가 생겨야 정상적으로 매핑 됨 -->
+	
+	<!-- (1차카테고리)카테고리별아이템조회+썸네일+페이징 + 유저페이지 상품 1차카테고리의 하위카테고리까지 모두 조회하는 쿼리 -->
+	<select id="findCateItemImgPage" resultType="com.pha.topten.domain.dto.ItemListDTO2">
+		SELECT i.*, ii.url
+		FROM item i
+		JOIN item_category ic ON i.no = ic.item_no
+		JOIN (
+		  SELECT c1.no, c1.e_name, c1.k_name
+		  FROM category c1
+		  WHERE c1.e_name = #{cname}
+		  UNION
+		  SELECT c2.no, c2.e_name, c2.k_name
+		  FROM category c1
+		  LEFT JOIN category c2 ON c1.no = c2.parent_no
+		  WHERE c1.e_name = #{cname}
+		  UNION
+		  SELECT c3.no, c3.e_name, c3.k_name
+		  FROM category c1
+		  LEFT JOIN category c2 ON c1.no = c2.parent_no
+		  LEFT JOIN category c3 ON c2.no = c3.parent_no
+		  WHERE c1.e_name = #{cname}
+		) c ON ic.category_no = c.no
+		LEFT JOIN item_image ii ON ii.item_no = i.no AND ii.is_def = 1
+		ORDER BY i.no DESC
+		limit #{limit} offset #{offset}
+	</select>
+	
+	<!-- (2차카테고리)카테고리별아이템조회+썸네일 //+페이징 + 유저페이지 상품 2차카테고리의 하위카테고리까지 모두 조회하는 쿼리 -->
+	<select id="findCateItemImgPageSecond" resultType="com.pha.topten.domain.dto.ItemListDTO2">
+		SELECT i.*, ii.url
+		FROM item i
+		JOIN item_category ic ON i.no = ic.item_no
+		JOIN item_image ii ON i.no = ii.item_no AND ii.is_def = 1
+		WHERE ic.category_no = #{no}
+		ORDER BY i.no DESC
+	</select>
+	
+	<!-- 카테고리 상품 상세보기 조회 -->
+	<select id="categoryDetail" resultType="com.pha.topten.domain.dto.ItemDetailDTO">
+		select i.*, ii.url
+		from item i
+		join item_category ic on i.no = ic.item_no
+		join category c on ic.category_no = c.no
+		left join item_image ii on ii.item_no = i.no AND ii.is_def = 1
+		where i.no = #{no}
+	</select>
+	
+	<!-- 상세보기 이미지 리스트 조회 -->
+	<select id="categoryDetailList" resultType="com.pha.topten.domain.dto.ItemDetailImageListDTO">
+		select i.*, ii.url 
+		from item i
+		join item_category ic on i.no = ic.item_no
+		join category c on ic.category_no = c.no
+		left JOIN item_image ii ON ii.item_no = i.no AND ii.is_list = 1
+		where i.no = #{no}
+	</select>
+	
+	
+	<!-- 카테고리별 상품 개수 -->
+	<select id="countCategory" resultType="int">
+		SELECT COUNT(*) AS item_count
+		FROM item_category ic
+		JOIN item i ON ic.item_no = i.no
+		JOIN category c ON ic.category_no = c.no
+		where c.e_name = #{cname}
+		GROUP BY c.e_name
+	</select>
+	
+	<!-- 1차 카테고리 포함 하위 카테고리 상품 개수 -->
+	<select id="countCategoryAll" resultType="int">
+		SELECT SUM(item_count) AS total_item_count
+		FROM (
+		  SELECT COUNT(*) AS item_count
+		  FROM item_category ic
+		  JOIN item i ON ic.item_no = i.no
+		  JOIN (
+		    SELECT c1.no, c1.e_name, c1.k_name
+		    FROM category c1
+		    WHERE c1.e_name = #{cname}
+		    UNION
+		    SELECT c2.no, c2.e_name, c2.k_name
+		    FROM category c1
+		    LEFT JOIN category c2 ON c1.no = c2.parent_no
+		    WHERE c1.e_name = #{cname}
+		    UNION
+		    SELECT c3.no, c3.e_name, c3.k_name
+		    FROM category c1
+		    LEFT JOIN category c2 ON c1.no = c2.parent_no
+		    LEFT JOIN category c3 ON c2.no = c3.parent_no
+		    WHERE c1.e_name = #{cname}
+		  ) c ON ic.category_no = c.no
+		  GROUP BY c.no, c.e_name
+		) subquery;
+
+	</select>
+	
+	<!-- 2차 카테고리 상품 개수 -->
+	<select id="countCategoryAllSecond" resultType="int">
+		SELECT COUNT(*)
+		FROM item i
+		JOIN item_category ic ON i.no = ic.item_no
+		JOIN item_image ii ON i.no = ii.item_no AND ii.is_def = 1
+		WHERE ic.category_no = #{no}
+	</select>
+	
+	<!-- 유저화면 상품 카테고리 목록 -->
+	<!-- 2차카테고리 이름 조회 -->
+	<select id="getCategoryProcess" resultType="com.pha.topten.domain.dto.category.CategoryListDTO">
+		SELECT c2.no, c2.k_name, c2.e_name
+		FROM category c1
+		JOIN category c2 ON c1.no = c2.parent_no
+		WHERE c1.e_name = #{cname}
+	</select>
+
+</mapper>

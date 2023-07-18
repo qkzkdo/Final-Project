@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{ layout/layout1 :: layout( ~{this::head} , ~{this::main} ) }">
+<head>
+	<link rel="stylesheet" href="/css/admin/itemlist.css">
+	<script type="text/javascript">
+		function delete_event(){
+			if(confirm("정말 삭제하시겠습니까??") == true){    //확인
+			     document.form.submit();
+			 }else{   //취소
+			     return;
+			 }
+		}
+	</script>
+</head>
+<main>
+	<div class="view-size flex">
+		<h1>관리자페이지-상품목록</h1>
+		<div th:replace="~{ admin/sidebar :: sidebar}"></div>
+		
+		<section id="item">
+			<h1>상품목록영역</h1>
+			
+			<div class="item-wrap">
+				<p class="tit">상품목록</p>
+				
+		        <table class="itemlist-wrap">
+		        	<tr class="tyt">
+		        		<td style="width: 30px;"></td>
+		        		<td style="width: 100px;">상품번호</td>
+		        		<td style="width: 100px;">이미지</td>
+		        		<td style="width: 300px;">상품명</td>
+		        		<td style="width: 100px;">가격</td>
+		        		<td style="width: 100px;">재고</td>
+		        		<td style="width: 200px;">등록일</td>
+		        		<td>삭제</td>
+		        	</tr>
+		        	<tr th:each="dto:${list}" class="content">
+		        		<td><input type="checkbox"></td>
+		        		<td th:text="${dto.no}">상품번호</td>
+		        		<td>
+		        			<img alt="리트스이미지" th:src="${dto.url}" width="40px">
+		        		</td>
+		        		<td>
+		        			<a th:href="|/admin/item/${dto.no}|" th:text="${dto.title}">상품명</a>
+		        		</td>
+		        		<td th:text="${dto.price}">가격</td>
+		        		<td th:text="${dto.stock}">재고</td>
+		        		<td th:text="${#temporals.format(dto.createdDate, 'yyyy-MM-dd HH:mm:ss')}">등록일</td>
+		        		<td>
+		        			<form th:action="@{|/admin/delete/${dto.no}|}" method="post"> <!-- th:action -->
+								<input type="hidden" name="_method" value="DELETE"> 
+								<button type="submit" class="delete-btn" onclick="delete_event()">삭제</button>
+							</form>
+		        		</td>
+		        	</tr>
+		        </table>
+				
+				<!-- 페이징 -->
+				<div th:unless="${#lists.isEmpty(list)}" class="flex center page-wrap">
+					<div th:if="${pd.from gt 1}">
+						<a  th:href="|/admin/item/list?page=${pd.from-1}|" >&lt;</a>
+					</div>
+					<div>
+						<span th:each="page : ${#numbers.sequence(pd.from,pd.to)}">
+							<a  th:href="|/admin/item/list?page=${page}|" th:text="${page}">페이지번호</a>
+						</span>
+					</div>
+					<div th:if="${pd.to lt pd.tot}">
+						<a  th:href="|/admin/item/list=${pd.to+1}|" >&gt;</a>
+					</div>
+				</div>
+			</div>
+		</section>
+	</div>
+</main>
+</html>

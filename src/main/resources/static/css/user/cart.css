@@ -1,0 +1,60 @@
+@charset "UTF-8";
+/* 타이즐 */
+#cart .wrap div .title{
+	font-size: 27px;
+	font-weight: bold;
+	text-align: center;
+	margin-top: 70px;
+}
+#cart .wrap div .content{
+	font-size: 14px;
+	text-align: center;
+	color: #808080;
+}
+/* 선택삭제, 품절삭제 */
+#cart .wrap .cart-wrap .delete{
+	margin: 50px 0 30px;
+}
+#cart .wrap .cart-wrap .delete ul li{
+	margin-left: 15px;
+}
+/* 바구니 */
+#cart .wrap .cart-wrap .basket .title{
+	border-top: 1px solid #e9e9e9;
+	border-bottom: 1px solid #e9e9e9;
+	text-align: center;
+}
+#cart .wrap .cart-wrap .basket .title li{
+	font-size: 15px;
+	text-align: center;
+	padding: 30px 0;
+	color: #808080;
+}
+#cart .wrap .cart-wrap .basket .content{
+	text-align: center;
+}
+#cart .wrap .cart-wrap .basket .content li{
+	text-align: center;
+	padding: 30px 0;
+	
+}
+/* 주문금액 */
+#cart .wrap .cart-wrap .basket .price-wrap{
+	padding: 30px 0;
+	border-top: 2px solid #636363;
+	background-color: #e6e6e6;
+	margin-bottom: 100px;
+}
+#cart .wrap .cart-wrap .basket .price-wrap .price{
+	margin-left: 80px;
+} 
+#cart .wrap .cart-wrap .basket .price-wrap li{
+	text-align: center;
+}
+.pay-btn{
+	background-color: #222;
+	color: #fff;
+	border: none;
+	width: 200px;
+	margin-right: 80px;
+}

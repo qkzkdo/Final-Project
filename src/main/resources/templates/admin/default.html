@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{ layout/layout1 :: layout( ~{this::head} , ~{this::main} ) }">
+<head>
+</head>
+<main>
+	<div class="view-size flex">
+		<h1>관리자페이지</h1>
+		<div id="sidebar">
+			<h1>사이드바레이아웃</h1>
+			<div th:replace="~{ admin/sidebar :: sidebar}"></div>
+		</div>
+		<section>
+			<p>관리자 페이지 대시보드 </p>
+			
+		</section>
+	</div>
+</main>
+</html>

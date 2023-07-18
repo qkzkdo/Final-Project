@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{ layout/layout1 :: layout( ~{this::head} , ~{this::main} ) }">
+<head>
+	<link rel="stylesheet" href="/css/user/signup.css">
+	<script src="js/user/sign.js"></script>
+</head>
+<main>
+	<h1>회원가입 페이지</h1>
+	<div class="wrap view-size">
+		<section id="signup">
+			<h1>회원가입</h1>
+			<p class="tit flex center">회원가입을 환영합니다!</p>
+			<div>
+				<h1>본인인증</h1>
+				<ul class="flex center">
+					<li>
+						<button class="phone-btn">휴대폰 인증</button>
+					</li>
+					<li>
+						<button class="ipin-btn">아이핀 인증</button>
+					</li>
+				</ul>
+			</div>
+		</section>
+		<section id="signup-form">
+			<div class="wrap flex center">
+				<h1>일반회원가입</h1>
+				<form method="post">
+		        	<p>
+		        		<input type="text" name="email" placeholder="이메일">
+		        	</p>
+		        	<p>
+		        		<input type="password" name="pass" placeholder="비밀번호">
+		        	</p>
+		        	<p>
+		        		<input type="text" name="nickName" placeholder="닉네임">
+		        	</p>
+		        	<p class="flex center">
+		        		<input type="hidden" th:if="${_csrf}"
+		        			th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+		        		<button class="signup-btn">회원가입</button>
+		        	</p>
+       			</form>
+			</div>
+			<a href="/signup-v">유효성회원가입</a>
+		</section>
+	</div>
+</main>
+</html>

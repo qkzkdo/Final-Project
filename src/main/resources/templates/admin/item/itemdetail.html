@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{ layout/layout1 :: layout( ~{this::head} , ~{this::main} ) }">
+<head>
+	<link rel="stylesheet" href="/css/admin/itemdetail.css">
+</head>
+<main>
+	<div class="view-size flex">
+		<h1>관리자페이지-상품목록</h1>
+		<div th:replace="~{ admin/sidebar :: sidebar}"></div>
+		
+		<section id="item-detail">
+			<p class="tit">상품 상세보기</p>
+			<div class="flex end" style="margin-bottom: 20px;">
+				<a th:href="|/admin/edit/${itemdetail.no}|"><button class="edit-btn">수정하기</button></a>
+			</div>
+			<div class="detail-wrap">
+				<table class="detail-list">
+		        	<tr class="tyt">
+		        		<td style="width: 70px;">상품번호</td>
+		        		<td>메인이미지</td>
+		        		<td>상품명</td>
+		        		<td>내용</td>
+		        		<td>가격</td>
+		        		<td>재고</td>
+		        		<td style="width: 150px;">등록일</td>
+		        	</tr>
+		        	<tr class="item-list">
+		        		<td th:text="${itemdetail.no}">상품번호</td>
+		        		<td>
+		        			<img alt="리트스이미지" th:src="${itemdetail.url}" width="100px">
+		        		</td>
+		        		<td>
+		        			<a th:text="${itemdetail.title}">상품명</a>
+		        		</td>
+		        		<td th:text="${itemdetail.content}">내용</td>
+		        		<td th:text="${itemdetail.price}">가격</td>
+		        		<td th:text="${itemdetail.stock}">재고</td>
+		        		<td th:text="${#temporals.format(itemdetail.createdDate, 'yyyy-MM-dd HH:mm:ss')}">등록일</td>
+		        	</tr>
+		        </table>
+		        <table class="detail-list">
+		        	<tr class="img-tit" >
+		        		<td colspan="7">상세이미지</td>
+		        	</tr>
+		        	<tr class="img-list">
+		        		<td th:each="dto : ${itemimagelist}">
+		        			<img alt="상품정보이미지" th:src="${dto.url}" width="200px">
+		        		</td>
+		        	</tr>
+		        </table>
+			</div>
+		</section>
+	</div>
+</main>
+</html>

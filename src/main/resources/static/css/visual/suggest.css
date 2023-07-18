@@ -1,0 +1,90 @@
+@charset "UTF-8";
+/* 상단이미지 */
+#suggest{
+	width: 1200px;
+	margin: 55px auto 0;
+}
+#suggest >.wrap >.wrap_1{
+	width: 590px;
+}
+#suggest >.wrap >.wrap_1 >.img >img{
+	width: 100%;
+	/* height: 406px; */
+}
+
+
+/* 중간멘트 */
+#suggest >.wrap >.wrap_1 >.tit-wrap{
+	padding-bottom: 14px;
+	border: 1px solid #e4e4e4;
+	border-top: 0 none;
+}
+#suggest >.wrap >.wrap_1 >.tit-wrap >.tit{
+	padding: 20px 0 28px;
+	text-align: center;
+	letter-spacing: -0.06vw; /* 글자 사이 간격 */
+}
+#suggest >.wrap >.wrap_1 >.tit-wrap >.tit >strong{
+	display: block;
+	margin-bottom: 6px;
+	font-size: 25px;
+}
+#suggest >.wrap >.wrap_1 >.tit-wrap >.tit >span{
+	font-size: 16px;
+	color: #666;
+}
+
+
+/* 썸네일 아이템 */
+#suggest >.wrap >.wrap_1 >.tit-wrap >.thumbnail-list{
+	margin-bottom: 0;
+	padding: 0 29px;
+}
+.thumbnail-list{
+	margin-right: -10px;
+}
+#suggest >.wrap >.wrap_1 >.tit-wrap >.thumbnail-list >ul >.card >.card-goods-img{
+	display: block;
+	width: 260px;
+	height: 347px;
+	position: relative;
+	margin: 0;
+	background-repeat: no-repeat;
+	/* background-color: rgba(0,0,0,0.027)!important; */
+	background-size: 260px 347px; /* 백그라운드 이미지 사이즈 맞추기 */
+}
+#suggest > .wrap > .wrap_1 > .tit-wrap .thumbnail-list > ul > li:nth-child(1){
+	margin-right: 10px;
+}
+/* 사이여백 */
+#suggest >.wrap >.wrap_1:nth-child(2) {
+	margin-left: 20px;
+}
+
+/* 썸네일아이템 문구 */
+.card-goods__brand{ /* 로고브랜드 */
+	font-weight: 600;
+	font-size: 12px;
+}
+.card-godds__text{ /* 아이템이름 */
+	font-weight: 300;
+	font-size: 13px;
+	color: #666;
+}
+/* 가격 */
+.card-goods__priceInfo .card-goods__price_sale{ /* 할인가 */
+	font-size: 14px;
+	font-weight: 600;
+}
+.card-goods__priceInfo .card-goods__price{ /* 정가 */
+	font-size: 12px;
+	color: #aaa;
+	font-weight: 400;
+}
+.card-goods__priceInfo .card-goods-discount{ /* 할인율 */
+	font-style: normal;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 16px;
+    color: #3909f8;
+}

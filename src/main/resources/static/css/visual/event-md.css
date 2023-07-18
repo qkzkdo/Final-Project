@@ -1,0 +1,64 @@
+@charset "UTF-8";
+/* 이벤트 배너 영역 */
+#event_banner{
+	max-width: 1200px;
+	margin: 67px auto 0;
+}
+#event_banner >.event-wrap{
+	position: relative;
+}
+#event_banner >.event-wrap >a{
+	display: block;
+	position: relative;
+}
+
+/* MD'S PICK 영역 */
+#md_feature{
+	width: 1200px;
+	margin: 35px auto 0;
+}
+#md_feature >.wrap >.title_h2{
+	padding: 40px 0 33px;
+	font-size: 26px;
+	font-weight: bold;
+	text-align: center;
+}
+#md_feature >.wrap >.title_h2>span{
+	position: relative;
+	display: inline-block;
+	line-height: 26px;
+	font-weight: bold;
+	padding: 0 24px;
+	background: #fff;
+	z-index: 2;
+}
+#md_feature >.wrap >.title_h2:after{
+	content: '';
+    display: block;
+    position: relative;
+    bottom: 17px;
+    width: 100%;
+    height: 1px;
+    background: #111;
+    z-index: 1;
+}
+
+/* 엠디픽 썸네일 리스트 */
+#md_feature .wrap .md-thumbnail-list{
+	margin-bottom: 150px;
+}
+#md_feature .wrap .md-thumbnail-list ul >.card >.card-goods-img{
+	display: block;
+	width: 260px;
+	height: 347px;
+	position: relative;
+	margin: 0;
+	background-repeat: no-repeat;
+	background-size: 260px 347px; /* 백그라운드 이미지 사이즈 맞추기 */	
+}
+#md_feature .wrap .md-thumbnail-list ul >.card:not(:last-child){
+	margin-right: 10px;
+}
+#md_feature .wrap .md-thumbnail-list ul{
+	margin-bottom: 70px;
+}

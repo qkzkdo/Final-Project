@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{ layout/layout1 :: layout( ~{this::head} , ~{this::main} ) }">
+<head>
+	<link rel="stylesheet" href="/css/user/signup-v.css">
+	<script src="js/user/sign.js"></script>
+</head>
+    <main id="signup">
+        <h1>메인영역</h1>
+        <div class="wrap view-size">
+        	<p class="tit flex center">회원가입</p>
+        	<form action="/signup" method="POST" id="form-signup" onsubmit="return validateForm()">
+        		<ul>
+        			<li>
+        				<div class="flex col-center">
+	        				<input onblur="validateInput(this, 0)"  type="text" id="email" name="email" placeholder="이메일 또는 아이디">
+	        				<input type="checkbox" class="required" disabled="disabled">
+	        				<!-- <span class="checkbox-state"></span> --> <!-- 맞게입력하면 초록생동그라미 -->
+        				</div>
+        				<div class="msg">
+        				</div>  
+        			</li>
+        			<li>
+        				<div class="flex col-center">
+	        				<input onblur="validateInput(this, 1)" type="password" id="pass" name="pass" placeholder="비밀번호">
+	        				<input type="checkbox" class="required" disabled="disabled">
+	        				<!-- <span class="checkbox-state"></span> -->
+        				</div>
+        				<div class="msg">
+        				</div>
+        			</li>
+        			<li>
+        				<div class="flex col-center">
+	        				<input onblur="validateRePass(this)" type="password" id="re-pass" placeholder="비밀번호 확인">
+	        				<input type="checkbox" class="required" disabled="disabled">
+	        				<!-- <span class="checkbox-state"></span> -->
+        				</div>
+        				<div class="msg">
+        				</div>
+        			</li>
+        			<li>
+        				<div class="flex col-center">
+	        				<input onblur="validateInput(this, 2)" type="text" id="name" name="nickName" placeholder="이름">
+	        				<input type="checkbox" class="required" disabled="disabled">
+	        				<!-- <span class="checkbox-state"></span> -->
+        				</div>
+        				<div class="msg">
+        				</div>
+        			</li>
+        			<li>
+        				<input type="hidden" th:if="${_csrf}" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+						<button class="btn-style" type="submit">회원가입</button>
+        			</li>
+        		</ul>
+        	</form>
+        </div>
+    </main>
+</html>

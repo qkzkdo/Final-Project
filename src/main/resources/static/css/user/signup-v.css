@@ -1,0 +1,55 @@
+@charset "UTF-8";
+
+#form-signup{
+	width: 400px;
+	margin: 0 auto 150px;;	
+}
+#form-signup .msg{
+	color: red;
+	font-size: 12px;
+}
+.required{
+	display: none;
+}
+.required:checked + .checkbox-state{
+	display: inline-flex;
+}
+.checkbox-state{
+	display:none;
+	width: 24px;
+	height: 24px;
+	background-color: green;
+	border-radius:50%;
+	margin-left: 10px;
+}
+.checkbox-state::before{
+	content:"";
+	display: inline-flex;
+	width: 24px;
+	height: 24px;
+	background: url("/images/icon/done-icon.svg") no-repeat center / 70%;
+	filter: brightness(0) invert(1); /* 이미지에 흰색 필터 적용 */
+}
+#form-signup li{
+	margin: 20px 0;
+	padding: 0 20px;
+}
+#form-signup li input{
+	width:100%;
+	padding: 1em;
+	font-size: 14px;
+}
+
+#signup .login a{
+	display: inline;
+	width: 360px;
+}
+#signup .btn-style{
+	padding: 1em;
+	width: 360px;
+	background-color: #484848;
+	color: #fff;
+}
+#signup .login a .btn-style{
+	background-color:  rgba(0,100,255,1);
+}

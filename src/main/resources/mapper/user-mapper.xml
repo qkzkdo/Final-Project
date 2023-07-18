@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pha.topten.config.mapper.UserMapper">
+	
+	<!-- 장바구니 추가 비동기 -->
+	<insert id="cartAddItem2">
+		<!-- 유저에서 이메일이 email인 회원 -->
+		insert into cart(item_no, user_no, amount) VALUES(#{itemNo}, (select no from my_user WHERE email = #{email}), #{dto.amount});
+	</insert>
+	
+	<!-- 장바구니페이지 - 상품 가져오기 -->
+	<select id="cartList" resultType="com.pha.topten.domain.dto.cart.CartListDTO">
+		SELECT c.no, i.no itemNo, i.title, SUM(i.price*c.amount) price, u.no userNo , u.email, u.nick_name, SUM(c.amount) amount, ii.url FROM cart c
+		JOIN item i ON i.no= c.item_no
+		JOIN my_user u ON u.no = c.user_no
+		left JOIN item_image ii ON ii.item_no = i.no AND ii.is_def = 1
+		WHERE u.email=#{email}
+		GROUP BY i.title
+		order by c.no desc;
+	</select>
+	
+	<delete id="cartDelete">
+		DELETE FROM cart WHERE item_no = #{no};
+	</delete>
+	
+</mapper>

@@ -1,0 +1,37 @@
+@charset "UTF-8";
+/* 카테고리 */
+#item_category .cate-wrap{
+	margin: 0 auto 50px	;
+	height: 30px;
+}
+#item_category .cate-wrap .category{
+	margin: 20px auto;
+}
+
+
+/* 상품리스트 */
+#item_list .wrap{
+	margin-top: 50px;
+}
+#item_list .wrap .item-wrap{
+	flex-wrap: wrap; 
+	justify-content: center;
+}
+/* 카테고리종류 목록 */
+#category{
+	margin: 100px 0;
+}
+
+/* 상품간 간격 */
+#item_list .wrap .item-wrap ul{
+	margin-bottom: 50px;
+}
+#item_list .wrap .item-wrap ul:not(:last-child){
+	margin-right: 20px;
+}
+
+/* 페이징 */
+.page-wrap{
+	margin: 50px 0;
+	justify-content: center;
+}
